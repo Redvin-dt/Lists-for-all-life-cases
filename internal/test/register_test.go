@@ -42,3 +42,21 @@ func TestPostUser(t *testing.T) {
 
 	assert.Equal(t, 400, w.Code, w.Body)
 }
+
+func TestLoginUser(t *testing.T) {
+	router := setup.SetupRouters()
+
+	w := httptest.NewRecorder()
+
+	req, _ := http.NewRequest("POST", "/login", strings.NewReader("{login:test}"))
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 400, w.Code, w.Body)
+
+	w = httptest.NewRecorder()
+
+	req, _ = http.NewRequest("POST", "/login", strings.NewReader(""))
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 400, w.Code, w.Body)
+}
