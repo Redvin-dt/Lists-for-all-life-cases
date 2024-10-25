@@ -9,7 +9,9 @@ func SetupRouters() *gin.Engine {
 	router := gin.Default()
 
 	router.POST("/register", restapi.RegisterHandler)
+	router.POST("/login", restapi.LoginHandler)
 	router.POST("/list/create", restapi.CreateListHandler)
+	router.POST("/list/get", restapi.CreateListHandler)
 
 	return router
 }
