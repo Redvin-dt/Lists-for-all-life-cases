@@ -27,4 +27,19 @@ func TestPostUser(t *testing.T) {
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 200, w.Code, w.Body)
+
+	w = httptest.NewRecorder()
+
+	req, _ = http.NewRequest("POST", "/register", strings.NewReader("{login:test}"))
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 400, w.Code, w.Body)
+
+	w = httptest.NewRecorder()
+
+	req, _ = http.NewRequest("POST", "/register", strings.NewReader(""))
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 400, w.Code, w.Body)
+
 }
