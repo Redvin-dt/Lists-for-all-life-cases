@@ -1,5 +1,5 @@
 package entities
 
 type List struct {
-	Values []string
+	Values []string `json:"values"`
 }

@@ -12,28 +12,20 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestPostUser(t *testing.T) {
+func TestCreateList(t *testing.T) {
 	router := setup.SetupRouters()
 
 	w := httptest.NewRecorder()
 
-	exampleUser := entities.User{
-		Login:          "test_name",
-		HashedPassword: "test_pass",
+	exampleList := entities.List{
+		Values: []string{"first item", "second item"},
 	}
 
-	userJson, _ := json.Marshal(exampleUser)
-	req, _ := http.NewRequest("POST", "/register", strings.NewReader(string(userJson)))
+	listJson, _ := json.Marshal(exampleList)
+	req, _ := http.NewRequest("POST", "/list/create", strings.NewReader(string(listJson)))
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 200, w.Code, w.Body)
-
-	w = httptest.NewRecorder()
-
-	req, _ = http.NewRequest("POST", "/register", strings.NewReader("{login:test}"))
-	router.ServeHTTP(w, req)
-
-	assert.Equal(t, 400, w.Code, w.Body)
 
 	w = httptest.NewRecorder()
 

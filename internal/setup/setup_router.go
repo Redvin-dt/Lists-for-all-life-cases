@@ -9,6 +9,7 @@ func SetupRouters() *gin.Engine {
 	router := gin.Default()
 
 	router.POST("/register", restapi.RegisterHandler)
+	router.POST("/list/create", restapi.CreateListHandler)
 
 	return router
 }
