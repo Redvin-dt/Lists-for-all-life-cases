@@ -22,11 +22,16 @@ func main() {
 	}
 
 	dbName := "lists_for_all_life_cases"
-	collectionName := "users"
 	db := client.Database(dbName)
 
-	err = db.CreateCollection(ctx, collectionName)
-
+	err = db.CreateCollection(ctx, "users")
+	if err != nil {
+		log.Fatalf("Ошибка создания коллекции: %v", err)
+	}
+	err = db.CreateCollection(ctx, "lists")
+	if err != nil {
+		log.Fatalf("Ошибка создания коллекции: %v", err)
+	}
 	client.Disconnect(ctx)
 
 	router := setup.SetupRouters()

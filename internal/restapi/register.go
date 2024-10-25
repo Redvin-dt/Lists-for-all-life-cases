@@ -57,7 +57,6 @@ func RegisterHandler(c *gin.Context) {
 	}
 	userMD.Login = user.Login
 	userMD.HashedPassword = user.HashedPassword
-	userMD.Lists = []int{}
 	_, insertErr := users.InsertOne(ctx, userMD)
 	if insertErr != nil {
 		c.JSON(400, gin.H{"error": "User registration failed"})

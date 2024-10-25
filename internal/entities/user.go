@@ -8,5 +8,4 @@ type User struct {
 type MongoUser struct {
 	Login          string `bson:"login"`
 	HashedPassword string `bson:"password"`
-	Lists          []int  `bson:"lists"`
 }
