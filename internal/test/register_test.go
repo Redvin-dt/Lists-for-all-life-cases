@@ -41,5 +41,4 @@ func TestPostUser(t *testing.T) {
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 400, w.Code, w.Body)
-
 }

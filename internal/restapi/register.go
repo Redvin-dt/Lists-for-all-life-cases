@@ -18,7 +18,6 @@ func RegisterHandler(c *gin.Context) {
 		return
 	}
 
-	// Проверка пользователя
 	if user.Login == "" {
 		c.JSON(400, gin.H{"error": "User must have login"})
 		return
@@ -28,7 +27,6 @@ func RegisterHandler(c *gin.Context) {
 		return
 	}
 
-	// Регистрация пользователя в базе данных
 	fmt.Println("Register user:", user)
 	c.JSON(200, gin.H{"message": "User registred"})
 }
